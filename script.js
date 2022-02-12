@@ -1,15 +1,44 @@
 
-const api_url= "https://api.nasa.gov/planetary/apod?api_key=HMRqEUJQEbg7DGplM82Zq3WvOErMVk7CGI5wQWtd";
-var imgBox = document.getElementById('imgBox');
 
+//set current Date as maximum date in calender
+document.getElementById("datepicker").setAttribute("max",today);
+
+var updatedDate;
+var today= new Date();
+var minDate= new Date();
+minDate.setFullYear(2022,01,01);
+
+var url= "https://api.nasa.gov/planetary/apod?";
+var apiKey= "api_key=HMRqEUJQEbg7DGplM82Zq3WvOErMVk7CGI5wQWtd";
+
+var flexContainer = document.getElementById('flex-container');
+
+//function that fetches data from NASA's API
 async function getData(){
-    const response = await fetch(api_url);
-    const data = await response.json();
-    if(response){
-        addNewImageContainer(data);
+   
+    while(minDate <= today){   
+        var dd=minDate.getDate();
+        var mm= minDate.getMonth()+1;
+        var yyyy= minDate.getFullYear();
+        if(dd<10)
+            dd= '0' +dd;
+         
+        if(mm<10)
+            mm= '0' +mm;
+        updatedDate= yyyy + '-'+ mm+ '-'+ dd;
+    
+        var api_url= url+ "date=" + updatedDate + "&"+apiKey;
+        var response = await fetch(api_url);
+        const data = await response.json();
+        if(response){
+            addNewImageContainer(data);
+        }
+    minDate.setDate(minDate.getDate() +1);
     }
+
 }
 
+//function to add new Image Container
 function addNewImageContainer(newData){
     
     //create a new element for image container
@@ -43,9 +72,19 @@ function addNewImageContainer(newData){
     newImageContainer.appendChild(newDescription);
     newDescription.appendChild(document.createTextNode(newData.explanation));
 
-    imgBox.appendChild(newImageContainer);
+    flexContainer.insertBefore(newImageContainer,flexContainer.firstChild);
     
 }
 
 getData();
 
+//Event handlers
+// var selectContainers= document.getElementsByClassName("imageContainer");
+// for(var i=0; i<selectContainers.length;i++){
+//     selectContainers[i].addEventListener("click",openImage,false);
+// }
+// //function for 'click' event
+// function openImage(){
+//     console.log("1");
+
+// }

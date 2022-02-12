@@ -1,23 +1,45 @@
 #mainHeading{
     font-family: 'Bungee', cursive;
     color:#081448;
-    text-shadow: 0px 0px 2px;
+    text-shadow: 0px 0px 2px ;
 }
+
+#flex-container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap:wrap;
+    /* height:auto;
+    align-items: flex-start; */
+    /* background-color: #f1f1f1; */
+}
+
 .imageContainer{
-    /* border:2px gr gray; */
-    box-shadow: 0px 0px 7px #8ca0b1;
+    flex-basis: 400px;
+    flex-grow:1;
+    box-shadow: 0px 0px 10px #39436D;
+    padding: 10px;
     margin: 25px;
-    padding: 15px;
     background-color: white;
+    transition: transform 1s;
 }
+
+.imageContainer img{
+    width:105%;
+}
+
+.imageContainer:hover{
+    transform: scale(1.07);
+}
+
 
 .imageTitle{
     font-family: 'Alegreya', serif;
     text-shadow: 0px 2px 2px #a7bbcb;
 }
 
-#description{
-    font-family: 'Nunito Sans', sans-serif;
+.description{
+    font-family: 'Poppins', 'sans-serif';
+    color: #120926;
 }
 
 #likeBtn{
@@ -33,15 +55,15 @@
 }
 
 .outline-btn{
-    border: 2px solid #8ca0b1;
+    border: 2px solid #2a165e;
     border-radius: 4px;
     background-color: white;
-    color:#8ca0b1;
+    color:#2a165e;
     padding: 6px 14px;
 }
 .outline-btn:hover{
-    border: 2px solid #8ca0b1;
-    background-color: #8ca0b1;
+    border: 2px solid #2a165e;
+    background-color: #2a165e;
     color:white;
 }
 
